@@ -15,11 +15,15 @@
  */
 package com.example.androiddevchallenge.ui
 
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -28,6 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
@@ -42,11 +47,26 @@ fun PuppyApp(viewModel: PuppyViewModel = viewModel()) {
     Scaffold(
         topBar = {
             val title by viewModel.title.collectAsState()
-            TopAppBar(
-                title = {
-                    Text(text = title)
-                }
-            )
+            val backStackEntry by navController.currentBackStackEntryAsState()
+
+            if (backStackEntry?.destination?.id == backStackEntry?.destination?.parent?.startDestination) {
+                TopAppBar(
+                    title = {
+                        Text(text = title)
+                    }
+                )
+            } else {
+                TopAppBar(
+                    title = {
+                        Text(text = title)
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+                        }
+                    }
+                )
+            }
         }
     ) {
         Surface(color = MaterialTheme.colors.background) {
