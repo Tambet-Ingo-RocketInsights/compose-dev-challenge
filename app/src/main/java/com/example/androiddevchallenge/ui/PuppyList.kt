@@ -32,8 +32,10 @@ import com.example.androiddevchallenge.puppyList
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 @Composable
-fun PuppyList(puppies: List<Puppy>,
-              onClick: (Puppy) -> Unit) {
+fun PuppyList(
+    puppies: List<Puppy>,
+    onClick: (Puppy) -> Unit
+) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp)
     ) {
@@ -44,8 +46,10 @@ fun PuppyList(puppies: List<Puppy>,
 }
 
 @Composable
-fun PuppyItem(puppy: Puppy,
-              onClick: (Puppy) -> Unit) {
+fun PuppyItem(
+    puppy: Puppy,
+    onClick: (Puppy) -> Unit
+) {
     Row(modifier = Modifier.clickable { onClick.invoke(puppy) }) {
         Text(
             text = puppy.name,

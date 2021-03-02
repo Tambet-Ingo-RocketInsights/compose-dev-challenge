@@ -1,3 +1,18 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.example.androiddevchallenge.ui
 
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +46,7 @@ private fun createAnnotatedString(label: String, value: String): AnnotatedString
         toAnnotatedString()
     }
 
-private fun Sex.format(): String = when(this) {
+private fun Sex.format(): String = when (this) {
     Sex.Male -> "Boy"
     Sex.Female -> "Girl"
 }
@@ -46,8 +61,12 @@ fun PuppyDetails(puppy: Puppy) {
     ) {
         Text(text = createAnnotatedString("Name", puppy.name))
         Text(text = createAnnotatedString("Breed", puppy.breed))
-        Text(text = createAnnotatedString("Age",
-            stringResource(id = R.string.age, puppy.age)))
+        Text(
+            text = createAnnotatedString(
+                "Age",
+                stringResource(id = R.string.age, puppy.age)
+            )
+        )
         Text(text = createAnnotatedString("Sex", puppy.sex.format()))
 
         puppy.owner?.let {
