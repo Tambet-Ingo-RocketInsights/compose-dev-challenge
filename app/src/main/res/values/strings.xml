@@ -10,4 +10,5 @@
       the License.
       -->
     <string name="app_name">Puppies</string>
+    <string name="age">%d years old</string>
 </resources>
