@@ -1,5 +1,6 @@
 package com.example.androiddevchallenge
 
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import com.example.androiddevchallenge.model.Puppy
 import com.example.androiddevchallenge.model.Sex
@@ -91,6 +92,14 @@ val puppyList = listOf(
 )
 
 class PuppyViewModel : ViewModel() {
+    private val _title = MutableStateFlow<String>("Puppies")
+    val title: StateFlow<String>
+        get() = _title.asStateFlow()
+
+    fun currentTitle(title: String) {
+        _title.value = title
+    }
+
     private val _puppies = MutableStateFlow<List<Puppy>>(puppyList.shuffled())
     val puppies: StateFlow<List<Puppy>>
         get() = _puppies.asStateFlow()
